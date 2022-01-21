@@ -1,8 +1,7 @@
 ClickEncoder
 =============
 ![Title image](/img/Title.png)
-
-> Arduino library to handle rotary encoders **with** buttons as a user input device.
+This is an Arduino library to handle rotary encoders **with** buttons as a user input device.
 Rotary Encoder with pushbutton Implementation [ClickEncoder]. Also provides `Button` only or `Encoder` only (without button), each as a class on its own.
 
 - Timer-Based: Works on any IO-Pin.
@@ -10,7 +9,7 @@ Rotary Encoder with pushbutton Implementation [ClickEncoder]. Also provides `But
 - Button reports multiple states: `Open/Closed`, `Clicked`, `DoubleClicked`, `Held`, `Released`, and `LongPressRepeat`. 
 
 ## Documentation
-Documentation can be found on my website [schallbert.github.io](https://schallbert.github.io/projects-software/encoder/).
+Documentation can be found on my website [schallbert.de](https://schallbert.de/projects-software/encoder/).
 
 ## How to use
 
@@ -52,4 +51,4 @@ Unittests have recently been added that verify button/encoder behavior. Written 
 [TimerOne](http://playground.arduino.cc/Code/Timer1)
 [TimerOne repo](https://github.com/PaulStoffregen/TimerOne)
 [ClickEncoder](https://github.com/Schallbert/encoder)
-[My Tech Shack](https://schallbert.github.io/)
+[My Tech Shack](https://schallbert.de/)
