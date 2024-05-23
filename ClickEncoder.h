@@ -39,6 +39,7 @@ public:
     void service();
     int16_t getIncrement();
     int16_t getAccumulate();
+    void setAccumulate(int16_t AC);
     void setAccelerationEnabled(const bool a) { accelerationEnabled = a; };
 
 private:
@@ -113,6 +114,7 @@ public:
     int16_t getIncrement() { return enc->getIncrement(); };
     // returns overall notch count since startup.
     int16_t getAccumulate() { return enc->getAccumulate(); };
+    void setAccumulate(int16_t AC) {  enc->setAccumulate(AC); };
     Button::eButtonStates getButton() {  return btn->getButton(); };
     // If active, encoder will count overproportionally quickly if turned fast.
     void setAccelerationEnabled(const bool b) { enc->setAccelerationEnabled(b); };
