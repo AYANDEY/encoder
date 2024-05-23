@@ -149,8 +149,9 @@ int16_t Encoder::getAccumulate()
 }
 void Encoder::setAccumulate( int16_t AC)
 {
-    encoderAccumulate = AC;
-    lastEncoderAccumulate=AC;
+    encoderAccumulate = AC*stepsPerNotch;
+    lastEncoderAccumulate=encoderAccumulate;
+    
 }
 
 // ----------------------------------------------------------------------------
