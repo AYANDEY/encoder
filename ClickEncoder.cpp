@@ -147,6 +147,11 @@ int16_t Encoder::getAccumulate()
 {
     return (encoderAccumulate / stepsPerNotch);
 }
+void Encoder::setAccumulate( int16_t AC)
+{
+    encoderAccumulate = AC;
+    lastEncoderAccumulate=AC;
+}
 
 // ----------------------------------------------------------------------------
 void Button::handleButton()
