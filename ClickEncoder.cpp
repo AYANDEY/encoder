@@ -87,7 +87,7 @@ void Encoder::handleEncoder()
     int8_t signedMovement = ((rawMovement & 1) - (rawMovement & 2));
 
     encoderAccumulate += signedMovement;
-    encoderAccumulate += handleAcceleration(signedMovement);
+    encoderAccumulate += handleAcceleration(signedMovement)*acceleration_factor;
 }
 
 uint8_t Encoder::getBitCode()
