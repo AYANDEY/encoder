@@ -40,7 +40,7 @@ public:
     int16_t getIncrement();
     int16_t getAccumulate();
     void setAccumulate(int16_t AC);
-    void setAccelerationEnabled(const bool a) { accelerationEnabled = a; };
+    void setAccelerationEnabled(const bool a,uint8_t aFactor) { accelerationEnabled = a; acceleration_factor=aFactor;};
 
 private:
     uint8_t getBitCode();
@@ -53,6 +53,7 @@ private:
     const bool pinActiveState;
 
     bool accelerationEnabled{false};
+    uint8_t acceleration_factor{1};
     volatile uint8_t lastEncoderRead{0};
     volatile int16_t encoderAccumulate{0};
     volatile int16_t lastEncoderAccumulate{0};
@@ -117,7 +118,7 @@ public:
     void setAccumulate(int16_t AC) {  enc->setAccumulate(AC); };
     Button::eButtonStates getButton() {  return btn->getButton(); };
     // If active, encoder will count overproportionally quickly if turned fast.
-    void setAccelerationEnabled(const bool b) { enc->setAccelerationEnabled(b); };
+    void setAccelerationEnabled(const bool b,uint8_t aF) { enc->setAccelerationEnabled(b,aF); };
     void setDoubleClickEnabled(const bool b) { btn->setDoubleClickEnabled(b); };
     // LongPressRepeat will overlay "Held" state. Thus, "Held" shouldn't be user in user code then!
     void setLongPressRepeatEnabled(const bool b) { btn->setLongPressRepeatEnabled(b); };
