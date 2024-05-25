@@ -87,7 +87,7 @@ void Encoder::handleEncoder()
     int8_t signedMovement = ((rawMovement & 1) - (rawMovement & 2));
 
     encoderAccumulate += signedMovement;
-    encoderAccumulate += handleAcceleration(signedMovement)*acceleration_factor;
+    encoderAccumulate += handleAcceleration(signedMovement) * acceleration_factor;
 }
 
 uint8_t Encoder::getBitCode()
@@ -99,7 +99,7 @@ uint8_t Encoder::getBitCode()
     //  A && !B --> 3
     uint8_t currentEncoderRead = digitalRead(pinA);
     currentEncoderRead |= (currentEncoderRead << 1);
-    
+
     // invert result's 0th bit if set
     currentEncoderRead ^= digitalRead(pinB);
     return currentEncoderRead;
@@ -138,6 +138,7 @@ int16_t Encoder::getIncrement()
     int16_t accu = getAccumulate();
     int16_t encoderIncrements = accu - lastEncoderAccumulate;
     lastEncoderAccumulate = accu;
+    
     return (encoderIncrements);
 }
 
@@ -145,13 +146,16 @@ int16_t Encoder::getIncrement()
 // takes acceleration into account if configured
 int16_t Encoder::getAccumulate()
 {
+#ifdef ACCUMULATE_POSITIVE
+    if (encoderAccumulate <= 0)
+        encoderAccumulate = 0;
+#endif
     return (encoderAccumulate / stepsPerNotch);
 }
-void Encoder::setAccumulate( int16_t AC)
+void Encoder::setAccumulate(int16_t AC)
 {
-    encoderAccumulate = AC*stepsPerNotch;
-    lastEncoderAccumulate=encoderAccumulate;
-    
+    encoderAccumulate = AC * stepsPerNotch;
+    lastEncoderAccumulate = encoderAccumulate;
 }
 
 // ----------------------------------------------------------------------------
@@ -220,7 +224,7 @@ void Button::handleButtonReleased()
         }
         else
         {
-            //doubleclick active and not elapsed!
+            // doubleclick active and not elapsed!
             buttonState = DoubleClicked;
             doubleClickTicks = 0;
         }
